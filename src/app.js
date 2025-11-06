@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 app.get('/api/stats', (req, res) => {
   const memUsage = process.memoryUsage();
-  
+
   res.json({
     totalRequests: requestCount,
     uptime: process.uptime(),

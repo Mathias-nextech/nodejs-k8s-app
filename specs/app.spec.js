@@ -138,7 +138,7 @@ describe('API Routes Tests', () => {
   describe('GET /api/stats', () => {
     it('should return application statistics', async () => {
       const res = await request(app).get('/api/stats');
-      
+
       expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty('totalRequests');
       expect(res.body).toHaveProperty('uptime');
@@ -151,12 +151,12 @@ describe('API Routes Tests', () => {
     it('should increment request count', async () => {
       const res1 = await request(app).get('/api/stats');
       const count1 = res1.body.totalRequests;
-      
+
       await request(app).get('/');
-      
+
       const res2 = await request(app).get('/api/stats');
       const count2 = res2.body.totalRequests;
-      
+
       expect(count2).toBeGreaterThan(count1);
     });
   });
