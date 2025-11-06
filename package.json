@@ -1,0 +1,35 @@
+{
+  "name": "nodejs-k8s-app",
+  "version": "1.0.0",
+  "description": "Application Node.js déployée sur Kubernetes",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --coverage --verbose",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/ specs/",
+    "lint:fix": "eslint src/ specs/ --fix",
+    "format": "prettier --write \"src/**/*.js\" \"specs/**/*.js\""
+  },
+  "keywords": ["nodejs", "express", "kubernetes", "docker"],
+  "author": "Votre Nom",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4"
+  }
+}
