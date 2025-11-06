@@ -16,8 +16,8 @@
   "author": "Votre Nom",
   "license": "MIT",
   "engines": {
-    "node": ">=22.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
