@@ -8,7 +8,7 @@ describe('API Routes Tests', () => {
 
       expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty('message');
-      expect(res.body).toHaveProperty('version', '1.0.0');
+      expect(res.body).toHaveProperty('version', '1.1.0');
       expect(res.body).toHaveProperty('visits');
       expect(res.body).toHaveProperty('hostname');
       expect(res.body).toHaveProperty('timestamp');
