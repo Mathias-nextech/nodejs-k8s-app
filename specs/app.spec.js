@@ -134,4 +134,30 @@ describe('API Routes Tests', () => {
       expect(res.headers).toHaveProperty('x-content-type-options');
     });
   });
+
+  describe('GET /api/stats', () => {
+    it('should return application statistics', async () => {
+      const res = await request(app).get('/api/stats');
+      
+      expect(res.statusCode).toBe(200);
+      expect(res.body).toHaveProperty('totalRequests');
+      expect(res.body).toHaveProperty('uptime');
+      expect(res.body).toHaveProperty('version');
+      expect(res.body).toHaveProperty('hostname');
+      expect(res.body).toHaveProperty('memory');
+      expect(res.body).toHaveProperty('nodeVersion');
+    });
+
+    it('should increment request count', async () => {
+      const res1 = await request(app).get('/api/stats');
+      const count1 = res1.body.totalRequests;
+      
+      await request(app).get('/');
+      
+      const res2 = await request(app).get('/api/stats');
+      const count2 = res2.body.totalRequests;
+      
+      expect(count2).toBeGreaterThan(count1);
+    });
+  });
 });

@@ -13,6 +13,31 @@ app.use(morgan('combined'));
 
 // Compteur de visites (en mémoire pour la démo)
 let visitCount = 0;
+let requestCount = 0;
+
+// Middleware pour compter les requêtes
+app.use((req, res, next) => {
+  requestCount++;
+  next();
+});
+
+app.get('/api/stats', (req, res) => {
+  const memUsage = process.memoryUsage();
+  
+  res.json({
+    totalRequests: requestCount,
+    uptime: process.uptime(),
+    version: '1.1.0',
+    hostname: process.env.HOSTNAME || 'unknown',
+    memory: {
+      rss: `${Math.round(memUsage.rss / 1024 / 1024)} MB`,
+      heapTotal: `${Math.round(memUsage.heapTotal / 1024 / 1024)} MB`,
+      heapUsed: `${Math.round(memUsage.heapUsed / 1024 / 1024)} MB`,
+      external: `${Math.round(memUsage.external / 1024 / 1024)} MB`
+    },
+    nodeVersion: process.version
+  });
+});
 
 // Routes
 app.get('/', (req, res) => {
